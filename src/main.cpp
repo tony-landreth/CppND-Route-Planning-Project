@@ -57,14 +57,14 @@ int main(int argc, const char **argv)
     // RoutePlanner object below in place of 10, 10, 90, 90.
   	float start_x, start_y, end_x, end_y;
   
-  	std::cout << "\n Enter X coordinate for the starting node: ";
-  	std::cin >> start_x;
+    std::cout << "\n Enter X coordinate for the starting node: ";
+    std::cin >> start_x;
     std::cout << "\n Enter Y coordinate for the starting node: ";
-  	std::cin >> start_y;
+    std::cin >> start_y;
     std::cout << "\n Enter X coordinate for the goal node: ";
-  	std::cin >> end_x;
+    std::cin >> end_x;
     std::cout << "\n Enter Y coordinate for the goal node: ";
-  	std::cin >> end_y;
+    std::cin >> end_y;
 
     // Build Model.
     RouteModel model{osm_data};
