@@ -27,6 +27,21 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     return std::move(contents);
 }
 
+void ReadValueFromUserInput(float &var, const std::string var_name) {
+  float value = 0.0;
+  
+  std::cout << "Enter a number between 0 and 100 for " + var_name + " : ";
+  std::cin >> value;
+  
+  while (std::cin.fail() || value < 0 || value > 100) {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "You must enter a number between 0 and 100. Please try again: ";
+    std::cin >> value;
+  }
+  var = value;
+}
+
 int main(int argc, const char **argv)
 {    
     std::string osm_data_file = "";
@@ -57,15 +72,11 @@ int main(int argc, const char **argv)
     // RoutePlanner object below in place of 10, 10, 90, 90.
   	float start_x, start_y, end_x, end_y;
   
-    std::cout << "\n Enter X coordinate for the starting node: ";
-    std::cin >> start_x;
-    std::cout << "\n Enter Y coordinate for the starting node: ";
-    std::cin >> start_y;
-    std::cout << "\n Enter X coordinate for the goal node: ";
-    std::cin >> end_x;
-    std::cout << "\n Enter Y coordinate for the goal node: ";
-    std::cin >> end_y;
-
+	ReadValueFromUserInput(start_x, "starting x coordinate");
+  	ReadValueFromUserInput(start_y, "starting y coordinate");
+  	ReadValueFromUserInput(end_x, "destination x coordinate");
+    ReadValueFromUserInput(end_y, "destination y coordinate");
+  
     // Build Model.
     RouteModel model{osm_data};
 
